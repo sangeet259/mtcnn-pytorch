@@ -10,7 +10,7 @@ import os
 cap = cv2.VideoCapture(0)
 
 while(True):
-    try:
+	try:
 
 
         # Capture frame-by-frame
@@ -26,13 +26,13 @@ while(True):
         opencvImage = cv2.cvtColor(np.array(pil_result), cv2.COLOR_RGB2BGR)
         cv2.imshow('frame',opencvImage)
     except:
-        pass
+    	pass
 
 
 
-    
-    if cv2.waitKey(1) & 0xFF == ord('q'):
-        break
+
+    	if cv2.waitKey(1) & 0xFF == ord('q'):
+    		break
 
 # When everything done, release the capture
 cap.release()
