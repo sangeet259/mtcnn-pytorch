@@ -6,27 +6,31 @@ from PIL import Image,ImageShow
 
 import time
 import os
-import pudb; pudb.pm()
 
 cap = cv2.VideoCapture(0)
 
 while(True):
-
-    # Capture frame-by-frame
-    _, cv2_im = cap.read()
-
-    cv2_im = cv2.cvtColor(cv2_im,cv2.COLOR_BGR2RGB)
-    pil_im = Image.fromarray(cv2_im)
-    bounding_boxes, landmarks = detect_faces(pil_im)
+    try:
 
 
-    pil_result = show_bboxes(pil_im, bounding_boxes, landmarks)
-    opencvImage = np.array(pil_result)
-    opencvImage = cv2.cvtColor(np.array(pil_result), cv2.COLOR_RGB2BGR)
+        # Capture frame-by-frame
+        _, cv2_im = cap.read()
+
+        cv2_im = cv2.cvtColor(cv2_im,cv2.COLOR_BGR2RGB)
+        pil_im = Image.fromarray(cv2_im)
+        bounding_boxes, landmarks = detect_faces(pil_im)
+
+
+        pil_result = show_bboxes(pil_im, bounding_boxes, landmarks)
+        opencvImage = np.array(pil_result)
+        opencvImage = cv2.cvtColor(np.array(pil_result), cv2.COLOR_RGB2BGR)
+        cv2.imshow('frame',opencvImage)
+    except:
+        pass
 
 
 
-    cv2.imshow('frame',opencvImage)
+    
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
 
